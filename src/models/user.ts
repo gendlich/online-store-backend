@@ -2,19 +2,13 @@ import Client from '../database';
 
 
 export type User = {
-  id: number;
+  id?: number;
   firstname: string;
   lastname: string;
   password: string;
 }
 
-export type createUser = {
-  firstname: string;
-  lastname: string;
-  password: string;
-}
-
-export class OnlineStore {
+export class UserModels {
   async index(): Promise<User[]> {
     try {
       const conn = await Client.connect();
@@ -41,7 +35,7 @@ export class OnlineStore {
     }
   }
 
-  async create(u: createUser): Promise<User> {
+  async create(u: User): Promise<User> {
     try {
         const conn = await Client.connect();
         const sql = `INSERT INTO users (firstName, lastName, password) VALUES('${u.firstname}', '${u.lastname}', '${u.password}') RETURNING *`
