@@ -7,8 +7,7 @@ const port = 3000;
 
 app.use(bodyParser.json());
 
-app.use('/', router)
-
+app.use('/', router);
 
 app.listen(port, function () {
   console.log(`starting app on the ${port} port`);
