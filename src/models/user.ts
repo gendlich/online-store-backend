@@ -1,4 +1,5 @@
 import Client from '../database';
+import bcrypt from 'bcrypt';
 
 export type User = {
   id?: number;
@@ -35,7 +36,10 @@ export class UserModels {
   async create(u: User): Promise<User> {
     try {
       const conn = await Client.connect();
-      const sql = `INSERT INTO users (firstname, lastname, password) VALUES('${u.firstname}', '${u.lastname}', '${u.password}') RETURNING *`;
+      
+      const hashedPassword = bcrypt.hashSync( u.password + process.env.BCRYPT_SECRET , parseInt(process.env.SALT_ROUNDS as string))
+      
+      const sql = `INSERT INTO users (firstname, lastname, password) VALUES('${u.firstname}', '${u.lastname}', '${hashedPassword}') RETURNING *`;
       const result = await conn.query(sql);
       conn.release();
       return result.rows[0];
