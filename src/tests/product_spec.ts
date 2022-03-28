@@ -1,8 +1,17 @@
-import { ProductModels } from '../product';
+import { ProductModels } from '../models/product';
 
 const productTest = new ProductModels();
 
 describe('Product Model', () => {
+  beforeAll( async () => {
+    await productTest.create({
+      name: 'Smartphone',
+      price: 600,
+      category: 'Phone'
+    });
+
+  });
+
   it('should have an index methor', () => {
     expect(productTest.index).toBeDefined;
   });
@@ -11,20 +20,6 @@ describe('Product Model', () => {
   });
   it('should have an create method', () => {
     expect(productTest.create).toBeDefined;
-  });
-
-  it('create method should add a product', async () => {
-    const result = await productTest.create({
-      name: 'Smartphone',
-      price: 600,
-      category: 'Phone'
-    });
-    expect(result).toEqual({
-      id: 1,
-      name: 'Smartphone',
-      price: 600,
-      category: 'Phone'
-    });
   });
 
   it('show method should return the correct product', async () => {

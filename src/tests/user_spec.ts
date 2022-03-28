@@ -1,8 +1,17 @@
-import { UserModels } from '../user';
+import { UserModels } from '../models/user';
 
 const userTest = new UserModels();
 
 describe('User Model', () => {
+
+beforeAll( async () => {
+     await userTest.create({
+      firstname: 'John',
+      lastname: 'Doe',
+      password: '1234'
+    });
+  });
+
   it('should have an index methor', () => {
     expect(userTest.index).toBeDefined;
   });
@@ -13,19 +22,6 @@ describe('User Model', () => {
     expect(userTest.create).toBeDefined;
   });
 
-  it('create methor should add a user', async () => {
-    const result = await userTest.create({
-      firstname: 'John',
-      lastname: 'Doe',
-      password: '1234'
-    });
-    expect(result).toEqual({
-      id: 1,
-      firstname: 'John',
-      lastname: 'Doe',
-      password: '1234'
-    });
-  });
 
   it('show method should return the correct user', async () => {
     const result = await userTest.show('1');
