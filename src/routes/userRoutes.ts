@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { User, UserModels } from '../models/user';
-
+import jwt from 'jsonwebtoken'
 
 const userMethod = new UserModels();
 
@@ -20,6 +20,11 @@ export const createU = async (req: Request, res: Response) => {
   lastname: req.body.lastname,
   password: req.body.password
   };
-  const createuser = await userMethod.create(user);
-  res.json(createuser);
+  try{
+    const createUser = await userMethod.create(user);
+    const token = jwt.sign({ user: createUser }, process.env.JWT_SECRET as string)
+    res.json(token);
+  } catch(e) {
+    throw(`Error: ${e}`)
+  }
 };
