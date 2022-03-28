@@ -28,7 +28,7 @@ describe('User Model', () => {
   });
 
   it('show method should return the correct user', async () => {
-    const result = await userTest.show(1);
+    const result = await userTest.show('1');
     expect(result).toEqual({
       id: 1,
       firstname: 'John',
@@ -37,7 +37,7 @@ describe('User Model', () => {
     });
   });
 
-  it('index method should return a list of products', async () => {
+  it('index method should return a list of users', async () => {
     const result = await userTest.index();
     expect(result).toEqual([
       {

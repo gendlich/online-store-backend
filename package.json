@@ -7,7 +7,7 @@
     "start": "node build/server.js",
     "build": "npx tsc",
     "jasmine": "jasmine-ts",
-    "test": "ENV=test db-migrate --env test up && jasmine-ts && db-migrate db:drop test",
+    "test": "export ENV=test || set ENV=test && db-migrate reset --env test && db-migrate --env test up && jasmine-ts",
     "lint": "eslint . --ext .ts",
     "format": "npx prettier src/. --write",
     "nodemon": "nodemon build/server.js"

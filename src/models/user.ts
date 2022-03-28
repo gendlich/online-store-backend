@@ -20,7 +20,7 @@ export class UserModels {
     }
   }
 
-  async show(id: number): Promise<User> {
+  async show(id: string): Promise<User> {
     try {
       const conn = await Client.connect();
       const sql = `SELECT * FROM users WHERE id=${id}`;
@@ -35,7 +35,7 @@ export class UserModels {
   async create(u: User): Promise<User> {
     try {
       const conn = await Client.connect();
-      const sql = `INSERT INTO users (firstName, lastName, password) VALUES('${u.firstname}', '${u.lastname}', '${u.password}') RETURNING *`;
+      const sql = `INSERT INTO users (firstname, lastname, password) VALUES('${u.firstname}', '${u.lastname}', '${u.password}') RETURNING *`;
       const result = await conn.query(sql);
       conn.release();
       return result.rows[0];

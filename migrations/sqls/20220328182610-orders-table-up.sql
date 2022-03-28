@@ -1,18 +1,3 @@
-/* Replace with your SQL commands */
-CREATE TABLE users ( 
-    id SERIAL PRIMARY KEY, 
-    firstName VARCHAR, 
-    lastName VARCHAR, 
-    password VARCHAR
-);
-
-CREATE TABLE product ( 
-    id SERIAL PRIMARY KEY, 
-    name VARCHAR, 
-    price INTEGER, 
-    category VARCHAR
-);
-
 CREATE TABLE orders ( 
     id SERIAL PRIMARY KEY, 
     CONSTRAINT product_id
