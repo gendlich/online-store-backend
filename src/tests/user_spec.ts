@@ -1,16 +1,19 @@
 import { UserModels } from '../models/user';
 
+
 const userTest = new UserModels();
 
 describe('User Model', () => {
-
-beforeAll( async () => {
-     await userTest.create({
+  
+  beforeAll( async () => {
+    await userTest.create({
       firstname: 'John',
       lastname: 'Doe',
       password: '1234'
     });
   });
+
+
 
   it('should have an index methor', () => {
     expect(userTest.index).toBeDefined;
@@ -40,7 +43,7 @@ beforeAll( async () => {
         id: 1,
         firstname: 'John',
         lastname: 'Doe',
-        password: '1234'
+        password: 'hashedPassword'
       }
     ]);
   });

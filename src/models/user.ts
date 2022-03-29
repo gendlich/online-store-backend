@@ -32,7 +32,7 @@ export class UserModels {
       throw new Error(`Cannot get the user from ${id} id. Error: ${e}`);
     }
   }
-
+  
   async create(u: User): Promise<User> {
     try {
       const conn = await Client.connect();
