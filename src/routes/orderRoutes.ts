@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import { Order, OrderModels } from '../models/order';
 
-const orderMethod = new OrderModels();
+const orderModel = new OrderModels();
 
 export const indexO = async (req: Request, res: Response) => {
-  const orders = await orderMethod.index(req.params.id);
+  const orders = await orderModel.index(req.params.id);
   res.json(orders);
 };
 
@@ -16,7 +16,7 @@ export const statusO = async (req: Request, res: Response) => {
     return;
   }
 
-  const orders = await orderMethod.status(req.params.id, orderStatus);
+  const orders = await orderModel.status(req.params.id, orderStatus);
   res.json(orders);
 };
 
@@ -27,6 +27,6 @@ export const createO = async (req: Request, res: Response) => {
     product_quantity: req.body.product_quantity,
     order_status: req.body.order_status
   };
-  const createOrder = await orderMethod.create(order);
+  const createOrder = await orderModel.create(order);
   res.json(createOrder);
 };

@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 import authJWT from '../middlewares/authJWT';
 import { indexP, showP, createP, popularP, categoryP } from './productRoutes';
-import { createU, indexU, showU } from './userRoutes';
+import { createU, deleteU, indexU, showU } from './userRoutes';
 import { indexO, statusO, createO } from './orderRoutes';
 
 const router = express.Router();
@@ -19,6 +19,7 @@ router.get('/category/:category', categoryP);
 router.get('/user/', authJWT, indexU);
 router.get('/user/:id', authJWT, showU);
 router.post('/user/', createU);
+router.delete('/user/:id', authJWT, deleteU)
 
 router.get('/order/:id', authJWT, indexO);
 router.get('/order/:id/:status', authJWT, statusO);

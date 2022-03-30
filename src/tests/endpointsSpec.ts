@@ -3,7 +3,6 @@ import app from '../server';
 
 const request = supertest(app);
 let token = '';
-let hashedPassword = '';
 
 beforeAll((done) => {
   request
@@ -15,11 +14,9 @@ beforeAll((done) => {
     })
     .end((e, response) => {
       token = response.body.token;
-      hashedPassword = response.body.createUser.password;
       done();
     });
 });
-export default hashedPassword;
 
 describe('User endpoint routes testing:', () => {
   it('should test if the user index is working', async () => {

@@ -1,15 +1,15 @@
 import { Request, Response } from 'express';
 import { Product, ProductModels } from '../models/product';
 
-const productMethod = new ProductModels();
+const productModel = new ProductModels();
 
 export const indexP = async (req: Request, res: Response) => {
-  const products = await productMethod.index();
+  const products = await productModel.index();
   res.json(products);
 };
 
 export const showP = async (req: Request, res: Response) => {
-  const product = await productMethod.show(req.params.id);
+  const product = await productModel.show(req.params.id);
   res.json(product);
 };
 
@@ -19,16 +19,16 @@ export const createP = async (req: Request, res: Response) => {
     price: req.body.price,
     category: req.body.category
   };
-  const createProduct = await productMethod.create(product);
+  const createProduct = await productModel.create(product);
   res.json(createProduct);
 };
 
 export const popularP = async (req: Request, res: Response) => {
-  const products = await productMethod.popularProducts();
+  const products = await productModel.popularProducts();
   res.json(products);
 };
 
 export const categoryP = async (req: Request, res: Response) => {
-  const products = await productMethod.filterByCategory(req.params.category);
+  const products = await productModel.filterByCategory(req.params.category);
   res.json(products);
 };
