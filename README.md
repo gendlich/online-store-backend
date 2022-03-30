@@ -1,6 +1,6 @@
 # Storefront Backend Project
 
-## Create a .env file in this model:
+## Create a .env file with these parameters:
 `POSTGRES_HOST=localhost`
 `POSTGRES_DB=(database_name)`
 `POSTGRES_TEST_DB=(database_name_test)`
