@@ -22,3 +22,13 @@ export const createP = async (req: Request, res: Response) => {
   const createProduct = await productMethod.create(product);
   res.json(createProduct);
 };
+
+export const popularP = async (req: Request, res: Response) => {
+  const products = await productMethod.popularProducts();
+  res.json(products)
+}
+
+export const categoryP = async (req: Request, res: Response) => {
+  const products = await productMethod.filterByCategory(req.params.category);
+  res.json(products)
+}

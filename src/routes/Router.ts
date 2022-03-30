@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import authJWT from '../middlewares/authJWT';
-import { indexP, showP, createP } from './productRoutes';
+import { indexP, showP, createP, popularP, categoryP } from './productRoutes';
 import { createU, indexU, showU } from './userRoutes';
 import { indexO, statusO, createO } from './orderRoutes';
 
@@ -13,6 +13,9 @@ router.get('/', (req: Request, res: Response) => {
 router.get('/product/', indexP);
 router.get('/product/:id', showP);
 router.post('/product/', authJWT, createP);
+router.get('/popular/', popularP);
+router.get('/category/:category', categoryP)
+
 
 router.get('/user/', authJWT, indexU);
 router.get('/user/:id', authJWT, showU);
