@@ -35,4 +35,4 @@ export const createU = async (req: Request, res: Response) => {
 export const deleteU = async (req: Request, res: Response) => {
   const user = await userModel.delete(req.params.id);
   res.json(user);
-}
+};

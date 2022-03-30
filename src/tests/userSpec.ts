@@ -5,12 +5,12 @@ import app from '../server';
 const request = supertest(app);
 const userModel = new UserModels();
 let hashedPassword = '';
-let token = ''
+let token = '';
 
-beforeAll( async (done)  => {
+beforeAll(async (done) => {
   request
-  .post('/user/')
-  .send({
+    .post('/user/')
+    .send({
       firstname: 'John',
       lastname: 'Doe',
       password: '1234'
@@ -20,16 +20,14 @@ beforeAll( async (done)  => {
       hashedPassword = response.body.createUser.password;
       done();
     });
+});
+
+describe('User delete endpoint test:', () => {
+  it('should work', async () => {
+    const res = await request.delete('/user/1').auth(token, { type: 'bearer' });
+    expect(res.status).toBe(200);
   });
-
-  describe('User delete endpoint test:', () => {
-    it('should work', async () => {
-      const res = await request.delete('/user/1').auth(token, { type: 'bearer' });
-      expect(res.status).toBe(200);
-    });
-  })
-
-
+});
 
 describe('User Model', () => {
   it('should have an index methor', () => {

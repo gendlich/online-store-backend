@@ -54,12 +54,12 @@ export class UserModels {
   async delete(id: string) {
     try {
       const conn = await Client.connect();
-      const sql1 = `DELETE FROM orders WHERE user_id=${id}`
+      const sql1 = `DELETE FROM orders WHERE user_id=${id}`;
       const sql2 = `DELETE FROM users WHERE id=${id}`;
       await conn.query(sql1);
       const result = await conn.query(sql2);
       conn.release();
-      return result.rows[0]
+      return result.rows[0];
     } catch (e) {
       throw new Error(`Cannot create delete. Error: ${e}`);
     }

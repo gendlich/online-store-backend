@@ -1,17 +1,17 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import router from './routes/Router';
-import cors from 'cors'
+import cors from 'cors';
 
 const app: express.Application = express();
-const port = 3000;
+const port = process.env.PORT;
 
 export const corsOptions = {
   origin: '',
   optionsSuccessStatus: 200
-}
+};
 
-app.use(cors(corsOptions))
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(router);
 
