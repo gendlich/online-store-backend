@@ -14,8 +14,7 @@ router.get('/product/', indexP);
 router.get('/product/:id', showP);
 router.post('/product/', authJWT, createP);
 router.get('/popular/', popularP);
-router.get('/category/:category', categoryP)
-
+router.get('/category/:category', categoryP);
 
 router.get('/user/', authJWT, indexU);
 router.get('/user/:id', authJWT, showU);

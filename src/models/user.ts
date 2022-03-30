@@ -32,13 +32,16 @@ export class UserModels {
       throw new Error(`Cannot get the user from ${id} id. Error: ${e}`);
     }
   }
-  
+
   async create(u: User): Promise<User> {
     try {
       const conn = await Client.connect();
-      
-      const hashedPassword = bcrypt.hashSync( u.password + process.env.BCRYPT_SECRET , parseInt(process.env.SALT_ROUNDS as string))
-      
+
+      const hashedPassword = bcrypt.hashSync(
+        u.password + process.env.BCRYPT_SECRET,
+        parseInt(process.env.SALT_ROUNDS as string)
+      );
+
       const sql = `INSERT INTO users (firstname, lastname, password) VALUES('${u.firstname}', '${u.lastname}', '${hashedPassword}') RETURNING *`;
       const result = await conn.query(sql);
       conn.release();

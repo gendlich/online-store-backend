@@ -1,4 +1,4 @@
-import Client from "../database";
+import Client from '../database';
 
 export type Order = {
   id?: number;
@@ -21,19 +21,19 @@ export class OrderModels {
     }
   }
 
-    async create(o: Order): Promise<Order> {
+  async create(o: Order): Promise<Order> {
     try {
-        const conn = await Client.connect();
-        const sql = `INSERT INTO orders (user_id, product_id, product_quantity, order_status) VALUES(${o.user_id},${o.product_id},${o.product_quantity},'${o.order_status}') RETURNING *`;
-        const result = await conn.query(sql);
-        conn.release();
-        return result.rows[0];
-        } catch (e) {
-        throw new Error(`Cannot create the order ${o.id}. Error: ${e}`);
-        }
+      const conn = await Client.connect();
+      const sql = `INSERT INTO orders (user_id, product_id, product_quantity, order_status) VALUES(${o.user_id},${o.product_id},${o.product_quantity},'${o.order_status}') RETURNING *`;
+      const result = await conn.query(sql);
+      conn.release();
+      return result.rows[0];
+    } catch (e) {
+      throw new Error(`Cannot create the order ${o.id}. Error: ${e}`);
     }
+  }
 
-    async status(id: string, status: string) {
+  async status(id: string, status: string) {
     try {
       const conn = await Client.connect();
       const sql = `SELECT * FROM orders WHERE order_status='${status}' AND user_id=${id}`;
@@ -42,7 +42,6 @@ export class OrderModels {
       return result.rows;
     } catch (e) {
       throw new Error(`Error: ${e}`);
-      
     }
   }
 }

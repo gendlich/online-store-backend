@@ -25,10 +25,10 @@ export const createP = async (req: Request, res: Response) => {
 
 export const popularP = async (req: Request, res: Response) => {
   const products = await productMethod.popularProducts();
-  res.json(products)
-}
+  res.json(products);
+};
 
 export const categoryP = async (req: Request, res: Response) => {
   const products = await productMethod.filterByCategory(req.params.category);
-  res.json(products)
-}
+  res.json(products);
+};
