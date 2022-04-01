@@ -1,6 +1,6 @@
 # Storefront Backend Project
 
-## Create a .env file in this model:
+## Create a .env file with these parameters:
 `POSTGRES_HOST=localhost`
 `POSTGRES_DB=(database_name)`
 `POSTGRES_TEST_DB=(database_name_test)`
@@ -23,10 +23,10 @@
 
 ## Important:
 
--The server will run on PORT 3000 but it can be changed on .ENV file.
--The Postgres Container is running on port 5432
--To setup all the libs needed use `npm install`
--Every endpoint is listed on **REQUIRIMENTS.md**
+- The server will run on PORT 3000 but it can be changed on .ENV file.
+- The Postgres Container is running on port 5432
+- To setup all the libs needed use `npm install`
+- Every endpoint is listed on **REQUIRIMENTS.md**
 
 ## NPM scripts:
 
