@@ -5,13 +5,23 @@ import jwt from 'jsonwebtoken';
 const userModel = new UserModels();
 
 export const indexU = async (req: Request, res: Response) => {
-  const users = await userModel.index();
-  res.json(users);
+  try {
+    const users = await userModel.index();
+    res.json(users).status(200);
+  } catch (e) {
+    console.log(e);
+    res.status(400);
+  }
 };
 
 export const showU = async (req: Request, res: Response) => {
-  const user = await userModel.show(req.params.id);
-  res.json(user);
+  try {
+    const user = await userModel.show(req.params.id);
+    res.json(user).status(200);
+  } catch (e) {
+    console.log(e);
+    res.status(400);
+  }
 };
 
 export const createU = async (req: Request, res: Response) => {
@@ -26,13 +36,19 @@ export const createU = async (req: Request, res: Response) => {
       { user: createUser },
       process.env.JWT_SECRET as string
     );
-    res.json({ token, createUser });
+    res.json({ token, createUser }).status(200);
   } catch (e) {
     throw `Error: ${e}`;
+    res.status(400);
   }
 };
 
 export const deleteU = async (req: Request, res: Response) => {
-  const user = await userModel.delete(req.params.id);
-  res.json(user);
+  try {
+    const user = await userModel.delete(req.params.id);
+    res.json(user).status(200);
+  } catch (e) {
+    console.log(e);
+    res.status(400);
+  }
 };

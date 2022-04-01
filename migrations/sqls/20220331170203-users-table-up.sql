@@ -4,4 +4,3 @@ CREATE TABLE users (
     lastname VARCHAR, 
     password VARCHAR
 );
-

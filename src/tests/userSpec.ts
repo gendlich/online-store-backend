@@ -24,8 +24,14 @@ beforeAll(async (done) => {
 
 describe('User delete endpoint test:', () => {
   it('should work', async () => {
-    const res = await request.delete('/user/1').auth(token, { type: 'bearer' });
-    expect(res.status).toBe(200);
+    try {
+      const res = await request
+        .delete('/user/1')
+        .auth(token, { type: 'bearer' });
+      expect(res.status).toBe(200);
+    } catch (e) {
+      console.log(e);
+    }
   });
 });
 
@@ -41,24 +47,32 @@ describe('User Model', () => {
   });
 
   it('show method should return the correct user', async () => {
-    const result = await userModel.show('2');
-    expect(result).toEqual({
-      id: 2,
-      firstname: 'John',
-      lastname: 'Doe',
-      password: hashedPassword
-    });
-  });
-
-  it('index method should return a list of users', async () => {
-    const result = await userModel.index();
-    expect(result).toEqual([
-      {
+    try {
+      const result = await userModel.show('2');
+      expect(result).toEqual({
         id: 2,
         firstname: 'John',
         lastname: 'Doe',
         password: hashedPassword
-      }
-    ]);
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  });
+
+  it('index method should return a list of users', async () => {
+    try {
+      const result = await userModel.index();
+      expect(result).toEqual([
+        {
+          id: 2,
+          firstname: 'John',
+          lastname: 'Doe',
+          password: hashedPassword
+        }
+      ]);
+    } catch (e) {
+      console.log(e);
+    }
   });
 });

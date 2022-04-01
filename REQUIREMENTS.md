@@ -38,8 +38,11 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 #### Orders
 - id    INTEGER PK
-- product_id   INTEGER FK (REFERENCES TO Product.ID)
-- product_quantity  INTEGER
 - user_id      INTEGER FK (REFERENCES TO User.ID)
 - status of order VARCHAR(8) (active or complete)
+
+#### Product_Orders
+- order_id  INTEGER FK (REFERENCES TO Order.ID)
+- product_id   INTEGER FK (REFERENCES TO Product.ID)
+- product_quantity  INTEGER
 

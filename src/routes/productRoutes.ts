@@ -4,13 +4,22 @@ import { Product, ProductModels } from '../models/product';
 const productModel = new ProductModels();
 
 export const indexP = async (req: Request, res: Response) => {
-  const products = await productModel.index();
-  res.json(products);
+  try {
+    const products = await productModel.index();
+    res.json(products).status(200);
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export const showP = async (req: Request, res: Response) => {
-  const product = await productModel.show(req.params.id);
-  res.json(product);
+  try {
+    const product = await productModel.show(req.params.id);
+    res.json(product).status(200);
+  } catch (e) {
+    console.log(e);
+    res.status(400);
+  }
 };
 
 export const createP = async (req: Request, res: Response) => {
@@ -19,16 +28,31 @@ export const createP = async (req: Request, res: Response) => {
     price: req.body.price,
     category: req.body.category
   };
-  const createProduct = await productModel.create(product);
-  res.json(createProduct);
+  try {
+    const createProduct = await productModel.create(product);
+    res.json(createProduct).status(200);
+  } catch (e) {
+    console.log(e);
+    res.status(400);
+  }
 };
 
 export const popularP = async (req: Request, res: Response) => {
-  const products = await productModel.popularProducts();
-  res.json(products);
+  try {
+    const products = await productModel.popularProducts();
+    res.json(products).status(200);
+  } catch (e) {
+    console.log(e);
+    res.status(400);
+  }
 };
 
 export const categoryP = async (req: Request, res: Response) => {
-  const products = await productModel.filterByCategory(req.params.category);
-  res.json(products);
+  try {
+    const products = await productModel.filterByCategory(req.params.category);
+    res.json(products).status(200);
+  } catch (e) {
+    console.log(e);
+    res.status(400);
+  }
 };

@@ -5,6 +5,7 @@ import { createU, deleteU, indexU, showU } from './userRoutes';
 import { indexO, statusO, createO } from './orderRoutes';
 import { corsOptions } from '../server';
 import cors from 'cors';
+import { addToOrder } from './productOrderRoutes';
 
 const router = express.Router();
 
@@ -26,5 +27,7 @@ router.delete('/user/:id', cors(corsOptions), authJWT, deleteU);
 router.get('/order/:id', cors(corsOptions), authJWT, indexO);
 router.get('/order/:id/:status', cors(corsOptions), authJWT, statusO);
 router.post('/order/', cors(corsOptions), authJWT, createO);
+
+router.post('/addOrder/', cors(corsOptions), authJWT, addToOrder);
 
 export default router;

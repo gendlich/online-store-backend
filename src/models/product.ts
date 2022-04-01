@@ -47,7 +47,7 @@ export class ProductModels {
   async popularProducts(): Promise<unknown[]> {
     try {
       const conn = await Client.connect();
-      const sql = `SELECT product_id, product.name, SUM(product_quantity) AS total_orders FROM orders LEFT JOIN product ON product.id = orders.product_id GROUP BY product_id, name ORDER BY total_orders DESC`;
+      const sql = `SELECT product_id, product.name, SUM(product_quantity) AS total_orders FROM product_orders LEFT JOIN product ON product.id = product_orders.product_id GROUP BY product_id, name ORDER BY total_orders DESC`;
       const result = await conn.query(sql);
       const top5 = [
         result.rows[0],
